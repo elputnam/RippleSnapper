@@ -11,7 +11,7 @@ function setup() {
 }
 
 function draw() {
-  background(random(80,120), 50, 100, 5);
+  background(random(80,120), 50, 100, 30);
   for (let i = 0; i < swarm.length; i++){
     swarm[i].update();
     swarm[i].display();

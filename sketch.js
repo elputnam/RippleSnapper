@@ -25,14 +25,14 @@ class Element{
     this.amp = createVector(random(20, width/2), random(20, height/2));
     this.H1 = random(200,300);
     this.H2 = random(0,50);
+    this.rad = random(height*.02, height*.05);
+    this.len = random(4, 6);
   }
 
   update(){
     this.accel = createVector(random(-0.05, 0.05), random(-0.05, 0.05));
     this.vel.add(this.accel);
     this.angle.add(this.vel);
-    this.rad = random(height*.02, height*.05);
-    this.len = random(4, 6);
   }
 
   display(){

@@ -30,7 +30,7 @@ class Element{
   }
 
   update(){
-    this.accel = createVector(random(-0.05, 0.05), random(-0.05, 0.05));
+    this.accel = createVector(random(-0.01, 0.01), random(-0.01, 0.01));
     this.vel.add(this.accel);
     this.angle.add(this.vel);
   }

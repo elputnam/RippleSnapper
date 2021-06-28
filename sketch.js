@@ -3,7 +3,7 @@ let swarm = [];
 function setup() {
   createCanvas(windowWidth, windowHeight);
   colorMode(HSB, 360, 100, 100, 100);
-  let num = width*0.02
+  let num = width*0.02;
   for (let i = 0; i < num; i++){
     swarm.push(new Element());
   }
@@ -29,7 +29,6 @@ class Element{
 
   update(){
     this.accel = createVector(random(-0.05, 0.05), random(-0.05, 0.05));
-    //this.accel = p5.Vector.random2D();
     this.vel.add(this.accel);
     this.angle.add(this.vel);
     this.rad = random(height*.02, height*.05);
@@ -44,7 +43,6 @@ class Element{
     translate(width/2, height/2);
     stroke(this.H1, random(100), random(100));
     noFill();
-    //fill(random(30,100), random(100), random(100));
     for (let i = 0; i < this.rad; i++){
       circle(x, y, this.len * i);
       }
@@ -52,9 +50,5 @@ class Element{
     pop();
     stroke(this.H2, random(100), random(100));
     line(mouseX,  mouseY, x*(width/2), y*(height/2));
-
-    //circle(x, y, 32);
-
-    //pop();
   }
 }

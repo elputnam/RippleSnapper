@@ -1,7 +1,17 @@
 let swarm = [];
 
+var capture = false; // default is to not capture frames, can be changed with button in browser
+var capturer = new CCapture({
+  format:'gif', 
+  workersPath: 'js/',
+  framerate: 15
+});
+
+const NUM_FRAMES = 640;
+
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  // let c = createCanvas(windowWidth, windowHeight);
+  createCanvas(500, 500);
   colorMode(HSB, 360, 100, 100, 100);
   let num = width*0.02;
   for (let i = 0; i < num; i++){
@@ -11,10 +21,27 @@ function setup() {
 }
 
 function draw() {
+  if (capture && frameCount==1) capturer.start(); // start the animation capture
   background(random(80,120), 50, 100, 30);
   for (let i = 0; i < swarm.length; i++){
     swarm[i].update();
     swarm[i].display();
+  }
+
+  //capture details
+  if (capture){
+    capturer.capture( canvas ); // if capture is 'true', save the frame
+    if (frameCount-1 == NUM_FRAMES){ //stop and save after NUM_FRAMES
+        capturer.stop(); 
+        capturer.save(); 
+        noLoop(); 
+    }
+}
+}
+
+function keyPressed() {
+  if (key == 's' || key == 'S'){
+   saveFrames('RippleSnapper', 'jpg', 1, 15);
   }
 }
 
@@ -49,6 +76,18 @@ class Element{
     
     pop();
     stroke(this.H2, random(100), random(100));
-    line(mouseX,  mouseY, x*(width/2), y*(height/2));
+    // line(mouseX,  mouseY, x*(width/2), y*(height/2));
+    line(width/2, height/2, x*(width/2), y*(height/2));
   }
+}
+
+function buttonPress()
+{
+    if (capture == false) {
+        capture = true;
+        document.getElementById("myButton").value='Saving Frames... Press Again to Cancel'; 
+        frameCount = 0;
+    } else {
+        location.reload(); //refresh the page (starts animation over, stops saving frames)
+    }
 }

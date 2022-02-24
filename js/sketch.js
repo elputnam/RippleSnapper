@@ -7,7 +7,7 @@ var capturer = new CCapture({
   framerate: 15
 });
 
-const NUM_FRAMES = 640;
+const NUM_FRAMES = 275;
 
 function setup() {
   // let c = createCanvas(windowWidth, windowHeight);
